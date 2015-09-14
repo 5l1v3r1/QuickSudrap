@@ -12,10 +12,8 @@ class App:
 	def __init__(self, master,selected):
 		self.frame = Frame(master)
 		self.frame.pack(fill=BOTH, expand=YES)
-		self.selected = selected
-		self.textbox = text_label = Text(self.frame)
-		self.textbox.insert(END, self.selected)
-		self.textbox.config(state=DISABLED)
+		self.textbox = Text(self.frame)
+		self.textbox.insert(END, selected)
 		self.textbox.pack(side=TOP,fill=X,expand=YES)
 		Label(self.frame, text="Title:").pack(side=LEFT,anchor=NW)
 		self.title = Entry(self.frame)
@@ -57,7 +55,7 @@ class App:
 			  tkMessageBox.showerror("Error", sys.exc_info()[0])
 		else:
 			br.select_form(nr=0)
-			br["text"] = self.selected
+			br["text"] = self.textbox.get("1.0",END)
 			br["title"] = self.title.get()
 			br["author"] = self.author.get()
 			br["syntax"] = self.syntaxlist[self.syntax.current()]
